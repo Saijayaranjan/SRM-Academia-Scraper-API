@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ENV_CONFIG } from "../utils/config.js";
 
 export async function withCaptcha(
   identifier,
@@ -22,9 +23,8 @@ export async function withCaptcha(
           "sec-fetch-dest": "empty",
           "sec-fetch-mode": "cors",
           "sec-fetch-site": "same-origin",
-          "x-zcsrf-token": "iamcsrcoo=CSRF_TOKEN_PLACEHOLDER",
-          cookie:
-            "SESSION_COOKIES_PLACEHOLDER",
+          "x-zcsrf-token": ENV_CONFIG.CSRF_TOKEN,
+          cookie: ENV_CONFIG.SESSION_COOKIES,
           Referer:
             "https://academia.srmist.edu.in/accounts/p/10002227248/signin?hide_fp=true&servicename=ZohoCreator&service_language=en&css_url=/49910842/academia-academic-services/downloadPortalCustomCss/login&dcc=true&serviceurl=https%3A%2F%2Facademia.srmist.edu.in%2Fportal%2Facademia-academic-services%2FredirectFromLogin",
           "Referrer-Policy": "strict-origin-when-cross-origin",

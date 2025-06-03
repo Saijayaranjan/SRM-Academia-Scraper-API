@@ -4,7 +4,15 @@
   "version": "1.0.0",
   "main": "server.js",
   "description": "A powerful, fast, and reliable API for accessing SRMIST student portal data including attendance, timetables, courses, and more.",
-  "keywords": ["srmist", "academia", "scraper", "api", "student", "attendance", "timetable"],
+  "keywords": [
+    "srmist",
+    "academia",
+    "scraper",
+    "api",
+    "student",
+    "attendance",
+    "timetable"
+  ],
   "author": "",
   "license": "MIT",
   "repository": {
@@ -22,6 +30,7 @@
     "@hono/node-server": "^1.14.3",
     "axios": "^1.9.0",
     "cheerio": "^1.0.0",
+    "dotenv": "^16.5.0",
     "hono": "^4.7.10"
   }
 }

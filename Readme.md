@@ -26,11 +26,13 @@
 
 ## 🆕 Recent Updates (June 2025)
 
+- 🔐 **Environment Variable Support** - Secure `.env` configuration for authentication tokens
 - ✅ **Enhanced Package Configuration** - Added proper metadata, keywords, and repository info
 - 🚀 **Improved Server Management** - New `start.js` for cleaner server startup
 - 📝 **Better NPM Scripts** - Added `dev` script with auto-reload for development
 - 🏗️ **Streamlined Architecture** - Removed redundant files and improved project structure
 - 🔧 **Node.js 16+ Support** - Added engine requirements for better compatibility
+- 🛡️ **Security Enhancements** - Automatic validation and better credential management
 
 ## 📁 Project Structure
 
@@ -66,7 +68,13 @@
    npm install
    ```
 
-3. **🔥 Start the server:**
+3. **⚙️ Setup environment variables:**
+   ```bash
+   cp .env.example .env
+   ```
+   Then edit `.env` file with your authentication values (see setup guide below).
+
+4. **🔥 Start the server:**
    ```bash
    npm start
    ```
@@ -75,22 +83,27 @@
    npm run dev
    ```
 
-4. **✅ Server running at:** `http://localhost:3000`
+5. **✅ Server running at:** `http://localhost:3000`
 
-> **⚠️ Important Note:** This code contains placeholder values for authentication tokens and cookies. Before using this project, you'll need to obtain valid session cookies through the authentication process described below.
+## 🔧 Environment Setup Guide
 
-## 🔧 Developer Setup Guide
+### 📝 Required Environment Variables
 
-### 🔑 Understanding the Placeholder Values
+Create a `.env` file in the project root with these variables:
 
-The code contains several placeholder values that you'll need to replace with real authentication data:
+```bash
+# CSRF Token from SRMIST login headers
+CSRF_TOKEN=iamcsrcoo=your_csrf_token_here
 
-- **`SESSION_COOKIES_PLACEHOLDER`** - Real session cookies from SRMIST login
-- **`CSRF_TOKEN_PLACEHOLDER`** - Cross-site request forgery tokens
-- **`YOUR_IDENTITY_ID`** - Your unique student identity from the login process
-- **`YOUR_DIGEST_HASH`** - Authentication digest from username verification
+# Session cookies from authenticated SRMIST session
+SESSION_COOKIES=_iamadt_client_10002227248=your_session_token; _iambdt_client_10002227248=your_other_token; _z_identity=true
 
-### 🛠️ How to Obtain Real Authentication Values
+# Optional: Server configuration
+PORT=3000
+NODE_ENV=development
+```
+
+### 🛠️ How to Obtain Authentication Values
 
 <details>
 <summary><strong>🔍 Method 1: Using Browser Developer Tools (Recommended)</strong></summary>
@@ -106,14 +119,14 @@ The code contains several placeholder values that you'll need to replace with re
    - Click on these requests to see Headers
 
 3. **Extract Values:**
-   - **Session Cookies:** Copy the `Cookie` header value from any authenticated request
-   - **CSRF Token:** Look for `x-zcsrf-token` in request headers
-   - **Identity/Digest:** Found in the JSON responses from login requests
+   - **Session Cookies:** Copy the entire `Cookie` header value from any authenticated request
+   - **CSRF Token:** Look for `x-zcsrf-token` header and copy the value (e.g., `iamcsrcoo=abc123...`)
 
-4. **Update the Code:**
-   - Replace `SESSION_COOKIES_PLACEHOLDER` in `fetch/login.js` and `fetch/withcaptcha.js`
-   - Replace `CSRF_TOKEN_PLACEHOLDER` with real CSRF tokens
-   - These values are session-specific and will expire
+4. **Update Your .env File:**
+   ```bash
+   CSRF_TOKEN=iamcsrcoo=your_actual_csrf_token_here
+   SESSION_COOKIES=_iamadt_client_10002227248=abc123...; _iambdt_client_10002227248=def456...; _z_identity=true
+   ```
 
 </details>
 
@@ -124,24 +137,19 @@ The recommended approach is to use the built-in authentication API endpoints whi
 
 1. **Use the login endpoints** as described in the Authentication section below
 2. **The API will generate** valid session cookies dynamically
-3. **No need to hardcode** any sensitive values
+3. **No manual token extraction needed**
 4. **Sessions are managed** automatically by the application
 
 This is the preferred method as it doesn't require manual token extraction and handles session renewals.
 
 </details>
 
-### 🔄 Updating Hardcoded Values (Advanced Users)
+### 🔒 Security Features
 
-If you need to update the hardcoded values for development:
-
-1. **Find the placeholder strings** in these files:
-   - `fetch/login.js` (lines with `SESSION_COOKIES_PLACEHOLDER` and `CSRF_TOKEN_PLACEHOLDER`)
-   - `fetch/withcaptcha.js` (same placeholders)
-
-2. **Replace with real values** obtained from Method 1 above
-
-3. **⚠️ Security Warning:** Never commit real authentication data to version control!
+- **🛡️ Environment Variables:** Sensitive data stored in `.env` files (never committed to Git)
+- **⚠️ Automatic Validation:** Server warns if environment variables are missing
+- **📝 Example File:** `.env.example` provides template with instructions
+- **🚫 Git Protection:** `.gitignore` prevents accidental commit of `.env` files
 
 ## 🔐 Authentication
 

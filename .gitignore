@@ -15,6 +15,10 @@ logs/
 .env.test.local
 .env.production.local
 
+# Environment files with sensitive data - NEVER commit these!
+.env.*
+!.env.example
+
 # OS generated files
 .DS_Store
 Thumbs.db
