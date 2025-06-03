@@ -326,6 +326,10 @@ Found a bug or have a feature request? Please [open an issue](https://github.com
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-**Made with ❤️ for SRMIST students**
+## 📝 Attribution
+
+Portions of this code are based on SRM Academia Scraper  
+Copyright (c) 2025 jackwaghan  
+https://github.com/jackwaghan/srm-academia-scraper
 
 </div>
