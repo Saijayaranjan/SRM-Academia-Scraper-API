@@ -24,19 +24,27 @@
 - 🔧 **Easily extensible** for new endpoints and data sources
 - 🔐 **Secure authentication** with session management
 
+## 🆕 Recent Updates (June 2025)
+
+- ✅ **Enhanced Package Configuration** - Added proper metadata, keywords, and repository info
+- 🚀 **Improved Server Management** - New `start.js` for cleaner server startup
+- 📝 **Better NPM Scripts** - Added `dev` script with auto-reload for development
+- 🏗️ **Streamlined Architecture** - Removed redundant files and improved project structure
+- 🔧 **Node.js 16+ Support** - Added engine requirements for better compatibility
+
 ## 📁 Project Structure
 
 ```
 📦 srm-academia-scraper/
-├── 🎯 src/
-│   ├── 📡 fetch/      # Fetches raw HTML/data from SRMIST portal
-│   ├── 🛠️ handler/    # API route handlers
-│   ├── 🔍 parser/     # Parses HTML/data into JSON
-│   └── ⚙️ utils/      # Shared utilities (dynamic URLs, static data)
-│   └── 🚀 server.js   # Main server entry point
-├── 📋 package.json
-├── 📄 LICENSE
-└── 📖 Readme.md
+├── 📡 fetch/         # Fetches raw HTML/data from SRMIST portal
+├── 🛠️ handler/       # API route handlers with authentication
+├── 🔍 parser/        # Parses HTML/data into JSON
+├── ⚙️ utils/         # Shared utilities (dynamic URLs, static data)
+├── 🚀 server.js      # Main Hono application setup
+├── ▶️ start.js       # Server startup script
+├── 📋 package.json   # Enhanced with proper metadata and scripts
+├── 📄 LICENSE        # MIT License
+└── 📖 Readme.md      # This comprehensive documentation
 ```
 
 ## 🚀 Quick Start
@@ -49,8 +57,8 @@
 
 1. **📥 Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo/srm-academia-scraper.git
-   cd srm-academia-scraper
+   git clone https://github.com/Saijayaranjan/SRM-Academia-Scraper-API.git
+   cd SRM-Academia-Scraper-API
    ```
 
 2. **📦 Install dependencies:**
